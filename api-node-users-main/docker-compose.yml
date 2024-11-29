@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: 12345
+    volumes:
+      - db-data:/var/lib/postgresql/data  # Volume persistente para os dados do banco
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Script de inicialização
+    ports:
+      - "5432:5432"
+    restart: always
+
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "3333:3333"
+    depends_on:
+      - db
+    restart: always
+    environment:
+      - PGHOST=db  # Aponta o host do banco para o nome do serviço Docker
+      - PGDATABASE=users
+      - PGUSER=local
+      - PGPASSWORD=12345
+
+volumes:
+  db-data:

@@ -1,0 +1,24 @@
+{
+  "name": "api-node-3b",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.28.1",
+    "postgres": "^3.4.4"
+  },
+  "description": "",
+  "devDependencies": {
+    "supertest": "^7.0.0",
+    "vitest": "^2.1.3"
+  }
+}
